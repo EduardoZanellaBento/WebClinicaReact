@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
@@ -7,14 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 
 export default function Login() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    function handleSubmit(e: React.FormEvent) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // Adicionar a validação real da ideia
-        navigate('/escolha-pacientes');
+        navigate('/ChoosePatient');
     }
 
     return (
@@ -28,8 +26,8 @@ export default function Login() {
                         <Input
                             id="email"
                             type="email"
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
+                            value={email}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                             placeholder="Digite aqui seu email"
                             required
                             className="w-full border-b border-gray-500 bg-transparent px-2 py-2 focus:outline-none focus:border-black text-black placeholder:text-gray-400"
@@ -41,13 +39,13 @@ export default function Login() {
                             id="password"
                             type="password"
                             value={password}
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                             placeholder="Digite aqui sua senha"
                             required
                             className="w-full border-b border-gray-500 bg-transparent px-2 py-2 focus:outline-none focus:border-black text-black placeholder:text-gray-400"
                         />
                         <div className="flex justify-end mt-1">
-                            <span className="text-xs text-black">Esqueceu a senha? <a href="#" className="underline">Clique aqui</a></span>
+                            <span className="text-xs text-black">Esqueceu a senha? <a href="/ForgotPassword" className="underline">Clique aqui</a></span>
                         </div>
                     </div>
                     <div className="flex justify-center mt-8">
