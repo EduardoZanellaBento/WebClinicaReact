@@ -21,7 +21,7 @@ export default function ForgotPassword() {
         }
         setError('');
         // Adicionar a validação real. Da ideia
-        navigate('/Login');
+        navigate('/');
     }
 
     return (
