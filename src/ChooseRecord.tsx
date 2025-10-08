@@ -51,7 +51,11 @@ export default function ChooseRecord() {
                             <Button
                                 className="w-full bg-green-600 hover:bg-green-700 text-white"
                                 onClick={() => {
-                                    navigate('/RecordMedicalHistory');
+                                    navigate('/RecordMedicalHistory', {
+                                        state: {
+                                            paciente: paciente
+                                        }
+                                    });
                                 }}
                             >
                                 Histórico Clinico
@@ -60,7 +64,11 @@ export default function ChooseRecord() {
                             <Button
                                 className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                                 onClick={() => {
-                                    navigate('/RecordPhysicalExam');
+                                    navigate('/RecordPhysicalExam', {
+                                        state: {
+                                            paciente: paciente
+                                        }
+                                    });
                                 }}
                             >
                                 Exame Físico

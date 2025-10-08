@@ -7,8 +7,6 @@ import ChoosePatient from './ChoosePatient';
 import ForgotPassword from './ForgotPassword';
 import ChooseRecord from './ChooseRecord';
 import RecordMedicalHistory from './RecordMedicalHistory';
-import RecordDailyEvolution from './RecordDailyEvolution';
-import RecordArticulation from './RecordArticulation';
 import RecordPhysicalExam from './RecordPhysicalExam';
 
 function App() {
@@ -21,8 +19,6 @@ function App() {
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/ChooseRecord" element={<ChooseRecord />} />
         <Route path="/RecordMedicalHistory" element={<RecordMedicalHistory />} />
-        <Route path="/RecordDailyEvolution" element={<RecordDailyEvolution />} />
-        <Route path="/RecordArticulation" element={<RecordArticulation />} />
         <Route path="/RecordPhysicalExam" element={<RecordPhysicalExam />} />
       </Routes>
     </Router>
