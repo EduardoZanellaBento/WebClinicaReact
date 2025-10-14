@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Card } from './components/ui/card';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ export default function Login() {
 
     return (
         <div className="min-h-screen min-w-screen flex items-center justify-center bg-green-100">
-            <div className="w-full max-w-sm p-8 rounded-xl bg-green-100 flex flex-col items-center justify-center min-h-screen">
+            <Card className="w-full max-w-sm p-8 rounded-xl bg-green-200 flex flex-col items-center justify-center min-h-full">
                 <h1 className="text-4xl font-bold mb-10 mt-4 text-black text-center">LOGIN</h1>
                 <h2 className="text-lg font-bold mb-12 text-black text-center">FISIOTERAPEUTA</h2>
                 <form onSubmit={handleSubmit} className="w-full space-y-8">
@@ -52,7 +53,7 @@ export default function Login() {
                         <Button type="submit" className="w-40 py-2 bg-black text-white font-semibold rounded-lg shadow hover:bg-gray-900 transition">ENTRAR</Button>
                     </div>
                 </form>
-            </div>
+            </Card>
         </div>
     );
 }
