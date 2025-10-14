@@ -33,6 +33,7 @@ export default function RecordPhysicalExam() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
+  //TODO - A CAMERA NAO FUNCIONA
   const iniciarCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({

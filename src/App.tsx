@@ -8,6 +8,8 @@ import ForgotPassword from './ForgotPassword';
 import ChooseRecord from './ChooseRecord';
 import RecordMedicalHistory from './RecordMedicalHistory';
 import RecordPhysicalExam from './RecordPhysicalExam';
+import RecordArticulation from './RecordArticulation';
+import RecordDailyEvolution from './RecordDailyEvolution';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/ChooseRecord" element={<ChooseRecord />} />
         <Route path="/RecordMedicalHistory" element={<RecordMedicalHistory />} />
         <Route path="/RecordPhysicalExam" element={<RecordPhysicalExam />} />
+        <Route path="/RecordArticulation" element={<RecordArticulation />} />
+        <Route path="/RecordDailyEvolution" element={<RecordDailyEvolution />} />
       </Routes>
     </Router>
   );

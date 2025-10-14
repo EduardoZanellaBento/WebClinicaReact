@@ -75,21 +75,25 @@ export default function ChooseRecord() {
                             </Button>
 
                             <Button
+                                className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+                                onClick={() => {
+                                    navigate('/RecordArticulation', {
+                                        state: {
+                                            paciente: paciente
+                                        }
+                                    });
+                                }}
+                            >
+                                Articulações
+                            </Button>
+
+                            <Button
                                 className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                                 onClick={() => {
                                     navigate('/RecordDailyEvolution');
                                 }}
                             >
                                 Evolução Diária
-                            </Button>
-
-                            <Button
-                                className="w-full bg-orange-600 hover:bg-orange-700 text-white"
-                                onClick={() => {
-                                    navigate('/RecordArticulation');
-                                }}
-                            >
-                                Articulações
                             </Button>
                         </div>
 
