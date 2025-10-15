@@ -29,6 +29,24 @@ export default function RecordMedicalHistory() {
     const [queixaPrincipal, setQueixaPrincipal] = useState("");
     const [historiaMolestia, setHistoriaMolestia] = useState("");
 
+    // Carregar dados salvos do localStorage ao inicializar
+    useEffect(() => {
+        const savedData = localStorage.getItem(`medical_history_${paciente.id}`);
+        if (savedData) {
+            try {
+                const parsedData = JSON.parse(savedData);
+                setDiagnosticoMedico(parsedData.diagnosticoMedico || "");
+                setMedicamentos(parsedData.medicamentos || "");
+                setQueixaPrincipal(parsedData.queixaPrincipal || "");
+                setHistoriaMolestia(parsedData.historiaMolestia || "");
+                setSelectedMedico(parsedData.selectedMedico || null);
+                setSearchTermMedico(parsedData.searchTermMedico || "");
+            } catch (error) {
+                console.error('Erro ao carregar histórico médico salvo:', error);
+            }
+        }
+    }, [paciente.id]);
+
     // Estados para o dropdown de médicos
     const [searchTermMedico, setSearchTermMedico] = useState("");
     const [showDropdownMedico, setShowDropdownMedico] = useState(false);
@@ -127,17 +145,23 @@ export default function RecordMedicalHistory() {
     };
 
     const handleSave = () => {
-        // Aqui você pode implementar a lógica para salvar os dados
-        console.log('Dados do histórico clínico:', {
+        // Preparar dados para salvar
+        const dataToSave = {
             paciente: paciente,
             medico: selectedMedico,
             diagnosticoMedico,
             medicamentos,
             queixaPrincipal,
-            historiaMolestia
-        });
+            historiaMolestia,
+            selectedMedico,
+            searchTermMedico,
+            timestamp: new Date().toISOString()
+        };
 
-        // Por enquanto, apenas mostra um alerta
+        // Salvar no localStorage
+        localStorage.setItem(`medical_history_${paciente.id}`, JSON.stringify(dataToSave));
+
+        console.log('Dados do histórico clínico:', dataToSave);
         alert('Histórico clínico salvo com sucesso!');
     };
 

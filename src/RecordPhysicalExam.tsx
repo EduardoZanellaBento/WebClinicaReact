@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -32,6 +32,24 @@ export default function RecordPhysicalExam() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
+
+  // Carregar dados salvos do localStorage ao inicializar
+  useEffect(() => {
+    const savedData = localStorage.getItem(`physical_exam_${paciente.id}`);
+    if (savedData) {
+      try {
+        const parsedData = JSON.parse(savedData);
+        setPalpitacao(parsedData.palpitacao || "");
+        setInspecao(parsedData.inspecao || "");
+        setDiagnosticoPrognostico(parsedData.diagnosticoPrognostico || "");
+        setObjetivoTerapeutico(parsedData.objetivoTerapeutico || "");
+        setTratamento(parsedData.tratamento || "");
+        setFotos(parsedData.fotos || []);
+      } catch (error) {
+        console.error('Erro ao carregar exame físico salvo:', error);
+      }
+    }
+  }, [paciente.id]);
 
   //TODO - A CAMERA NAO FUNCIONA
   const iniciarCamera = async () => {
@@ -105,18 +123,22 @@ export default function RecordPhysicalExam() {
   };
 
   const handleSave = () => {
-    // Aqui você pode implementar a lógica para salvar os dados
-    console.log('Dados do exame físico:', {
+    // Preparar dados para salvar
+    const dataToSave = {
       paciente: paciente,
       palpitacao,
       inspecao,
       diagnosticoPrognostico,
       objetivoTerapeutico,
       tratamento,
-      fotos: fotos.length
-    });
+      fotos: fotos,
+      timestamp: new Date().toISOString()
+    };
 
-    // Por enquanto, apenas mostra um alerta
+    // Salvar no localStorage
+    localStorage.setItem(`physical_exam_${paciente.id}`, JSON.stringify(dataToSave));
+
+    console.log('Dados do exame físico:', dataToSave);
     alert('Exame físico salvo com sucesso!');
   };
 

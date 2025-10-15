@@ -90,7 +90,11 @@ export default function ChooseRecord() {
                             <Button
                                 className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                                 onClick={() => {
-                                    navigate('/RecordDailyEvolution');
+                                    navigate('/RecordDailyEvolution', {
+                                        state: {
+                                            paciente: paciente
+                                        }
+                                    });
                                 }}
                             >
                                 Evolução Diária

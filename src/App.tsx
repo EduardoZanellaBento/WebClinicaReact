@@ -10,6 +10,7 @@ import RecordMedicalHistory from './RecordMedicalHistory';
 import RecordPhysicalExam from './RecordPhysicalExam';
 import RecordArticulation from './RecordArticulation';
 import RecordDailyEvolution from './RecordDailyEvolution';
+import SessionDetails from './SessionDetails';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/RecordPhysicalExam" element={<RecordPhysicalExam />} />
         <Route path="/RecordArticulation" element={<RecordArticulation />} />
         <Route path="/RecordDailyEvolution" element={<RecordDailyEvolution />} />
+        <Route path="/SessionDetails" element={<SessionDetails />} />
       </Routes>
     </Router>
   );

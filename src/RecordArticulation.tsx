@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,19 @@ export default function RecordArticulation() {
    // Estado para armazenar os dados dos checkboxes
    const [articulationData, setArticulationData] = useState<ArticulationData>({});
 
+   // Carregar dados salvos do localStorage ao inicializar
+   useEffect(() => {
+      const savedData = localStorage.getItem(`articulation_data_${paciente.id}`);
+      if (savedData) {
+         try {
+            const parsedData = JSON.parse(savedData);
+            setArticulationData(parsedData);
+         } catch (error) {
+            console.error('Erro ao carregar dados das articulações:', error);
+         }
+      }
+   }, [paciente.id]);
+
    // Se não houver dados do paciente, redirecionar para ChoosePatient
    if (!paciente) {
       navigate('/ChoosePatient');
@@ -59,23 +72,34 @@ export default function RecordArticulation() {
    };
 
    const handleCheckboxChange = (articulation: string, category: string, item: string, checked: boolean) => {
-      setArticulationData(prev => ({
-         ...prev,
+      const updatedData = {
+         ...articulationData,
          [articulation]: {
-            ...prev[articulation],
+            ...articulationData[articulation],
             [category]: {
-               ...prev[articulation]?.[category],
+               ...articulationData[articulation]?.[category],
                [item]: checked
             }
          }
-      }));
+      };
+      setArticulationData(updatedData);
+
+      // Salvar automaticamente no localStorage
+      localStorage.setItem(`articulation_data_${paciente.id}`, JSON.stringify(updatedData));
    };
 
    const handleSave = () => {
-      console.log('Dados das articulações:', {
+      // Preparar dados para salvar
+      const dataToSave = {
          paciente: paciente,
-         articulationData
-      });
+         articulationData,
+         timestamp: new Date().toISOString()
+      };
+
+      // Salvar no localStorage (já está sendo salvo automaticamente, mas vamos garantir)
+      localStorage.setItem(`articulation_data_${paciente.id}`, JSON.stringify(articulationData));
+
+      console.log('Dados das articulações:', dataToSave);
       alert('Dados das articulações salvos com sucesso!');
    };
 
