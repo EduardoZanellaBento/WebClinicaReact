@@ -22,7 +22,7 @@ export default function ChooseRecord() {
     const handleBackToPatients = () => {
         navigate('/ChoosePatient');
     };
-
+    //TODO - falta telefone
     return (
         <div className="min-h-screen min-w-screen flex items-center justify-center bg-green-100">
             <LogoCorner />

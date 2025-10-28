@@ -134,7 +134,7 @@ export default function SessionDetails() {
         "Treino de Equilíbrio",
         "Bicicleta",
         "Fortalecimento",
-        "Mobilização Muscular"
+        "Mobilização Articular"
     ];
 
     return (

@@ -20,7 +20,7 @@ export default function RecordPhysicalExam() {
   const paciente = location.state?.paciente as Paciente;
 
   // Estados para os campos do formulário
-  const [palpitacao, setPalpitacao] = useState("");
+  const [palpacao, setPalpacao] = useState("");
   const [inspecao, setInspecao] = useState("");
   const [diagnosticoPrognostico, setDiagnosticoPrognostico] = useState("");
   const [objetivoTerapeutico, setObjetivoTerapeutico] = useState("");
@@ -39,7 +39,7 @@ export default function RecordPhysicalExam() {
     if (savedData) {
       try {
         const parsedData = JSON.parse(savedData);
-        setPalpitacao(parsedData.palpitacao || "");
+        setPalpacao(parsedData.palpacao || "");
         setInspecao(parsedData.inspecao || "");
         setDiagnosticoPrognostico(parsedData.diagnosticoPrognostico || "");
         setObjetivoTerapeutico(parsedData.objetivoTerapeutico || "");
@@ -126,7 +126,7 @@ export default function RecordPhysicalExam() {
     // Preparar dados para salvar
     const dataToSave = {
       paciente: paciente,
-      palpitacao,
+      palpacao,
       inspecao,
       diagnosticoPrognostico,
       objetivoTerapeutico,
@@ -176,15 +176,15 @@ export default function RecordPhysicalExam() {
           </div>
 
           <div className="space-y-6">
-            {/* Palpitação */}
+            {/* Palpação */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Palpitação
+                Palpação
               </label>
               <Textarea
-                placeholder="Descreva a palpitação"
-                value={palpitacao}
-                onChange={(e) => setPalpitacao(e.target.value)}
+                placeholder="Descreva a palpação"
+                value={palpacao}
+                onChange={(e) => setPalpacao(e.target.value)}
                 className="w-full min-h-[100px]"
               />
             </div>
